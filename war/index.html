@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<!--<html lang="en" manifest="timout.appcache">-->
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Timout</title>
+	<meta name="description" content="Your agile time management application">
+	<meta name="author" content="Libor Kramoliš">
+
+	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Le styles -->
+	<link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
+	<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.16.custom.css" rel="stylesheet"/>
+	<link href="css/timout.css" rel="stylesheet"/>
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+
+	<!--<script type="text/javascript" src="js/timer.js"></script>-->
+	<!--<script type="text/javascript" src="js/teas_en.js"></script>-->
+	<script type="text/javascript" src="js/bootstrap-buttons.js"></script>
+	<script type="text/javascript" src="js/bootstrap-twipsy.js"></script>
+	<script type="text/javascript" src="js/bootstrap-popover.js"></script>
+
+	<script type="text/javascript" src="js/timout.js"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+	<div class="content">
+		<div class="page-header">
+			<h1>Timout
+				<small>Your agile time management application</small>
+			</h1>
+		</div>
+		<div class="row">
+			<div class="span18">
+				<div id="wrong_browser" class="alert-message error" hidden2="hidden">
+					<p><strong>Google Chrome required!</strong><br/>This application needs <strong>desktop
+						notifications</strong>, which are currently implemented in <strong>Google Chrome</strong> only.
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="span13">
+				<div class="well">
+
+					<div id="breakGroup" hidden2="hidden">
+						<div class="row">
+							<div class="span1"></div>
+							<div class="span10">
+								<h2 id="breakTitle" >Take a break after finished task</h2>
+								<blockquote>
+									<p id="lastDescription" style="font-weight: bold;">n/a</p>
+								</blockquote>
+								<div class="row">&nbsp;</div>
+								<button id="shortBreak" class="btn primary span2">Short break</button>
+								<span class="span1">&nbsp;</span>
+								<button id="longBreak" class="btn info span2">Long break</button>
+							</div>
+						</div>
+					</div>
+
+					<div id="inputGroup" hidden2="hidden">
+						<form action="">
+							<div class="clearfix">
+								<h2>Task</h2>
+								<!--<label for="taskDescription" class="taskLabel">Task</label>-->
+							</div>
+							<div class="clearfix">
+								<input id="taskDescription" class="" type="text" style="width: 600px" placeholder="Describe shortly your task">
+								<button id="taskStart" class="btn success span2">Start</button>
+							</div>
+						</form>
+					</div>
+
+					<div id="timeGroup" hidden2="hidden">
+						<div class="row">
+							<div id="currentTime" class="span3">0:00</div>
+							<div class="span1"></div>
+							<div class="span6">
+								<h3 id="currentTitle" >n/a</h3>
+								<blockquote>
+									<p id="currentTaskDesc" style="font-weight: bold;">n/a</p>
+									<small>started at <span id="currentTaskStart">n/a</span></small>
+								</blockquote>
+								<div class="row">&nbsp;</div>
+								<button id="timeInterrupt" class="btn danger span2" style="float: right;">Interrupt</button>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="span5">
+				<div class="well">
+					<h2>About</h2>
+
+					<span class="label success">SUPPORT ME</span> Give me a <strong>+1</strong> at Chrome Web Store! Thanks.
+
+					<h3>Project</h3>
+
+					gplus
+
+					<h3>Author</h3>
+
+					<p>&copy; timout (at) kramolis.cz, 2011</p>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+</div>
+<!-- /container -->
+
+<a href="https://github.com/shamoh/timout">
+	<img style="position: absolute; z-index: 5; top: 0; right: 0; border: 0;"
+		 src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"
+		 alt="Fork me on GitHub" />
+</a>
+
+</body>
+</html>
