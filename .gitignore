@@ -1,3 +1,14 @@
 /.idea
+/.gradle/
+/.settings/
+/timout.iml
+/_bak/
+/_bak2/
 /secret.txt
+/hints.txt
 /war/WEB-INF/lib
+/build/
+/build.gradle
+/gradle/
+/gradlew
+/gradlew.bat

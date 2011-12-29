@@ -44,8 +44,10 @@
 		<div class="row">
 			<div class="span18">
 				<div id="wrong_browser" class="alert-message error" hidden="hidden">
-					<p><strong>Google Chrome required!</strong><br/>This application needs <strong>desktop
-						notifications</strong>, which are currently implemented in <strong>Google Chrome</strong> only.
+					<p><strong>Google Chrome required!</strong><br/>
+						Notifications are not supported for this Browser/OS version yet.
+						This application needs <strong>desktop notifications</strong>,
+						which are currently implemented in <strong>Google Chrome</strong> only.
 					</p>
 				</div>
 			</div>
@@ -60,8 +62,8 @@
 							<div class="span12">
 								<h2 id="breakTitle" >Take a break after finished task</h2>
 								<blockquote>
-									<p id="lastDescription" style="font-weight: bold;">n/a</p>
-									<small>finished at <span id="currentTaskFinish">n/a</span></small>
+									<p id="lastDescription" style="font-weight: bold;"></p>
+									<small>finished at <span id="currentTaskFinish"></span></small>
 								</blockquote>
 								<div class="row">&nbsp;</div>
 								<button id="shortBreak" class="btn primary span3">Short break (5 min)</button>
@@ -75,11 +77,11 @@
 					<div id="inputGroup">
 						<form action="">
 							<div class="clearfix">
-								<h2>Task</h2>
+								<h2>Pomodoro Task</h2>
 								<!--<label for="taskDescription" class="taskLabel">Task</label>-->
 							</div>
 							<div class="clearfix">
-								<input id="taskDescription" class="" type="text" style="width: 600px" placeholder="Describe shortly your task">
+								<input id="taskDescription" class="" type="text" style="width: 600px" placeholder="Describe your pomodoro task">
 								<button id="taskStart" class="btn success span2">Start</button>
 							</div>
 						</form>
@@ -90,10 +92,10 @@
 							<div id="currentTime" class="span3">0:00</div>
 							<div class="span1"></div>
 							<div class="span6">
-								<h3 id="currentTitle" >n/a</h3>
+								<h3 id="currentTitle" ></h3>
 								<blockquote>
-									<p id="currentTaskDesc" style="font-weight: bold;">n/a</p>
-									<small>started at <span id="currentTaskStart">n/a</span></small>
+									<p id="currentTaskDesc" style="font-weight: bold;"></p>
+									<small>started at <span id="currentTaskStart"></span></small>
 								</blockquote>
 								<div class="row">&nbsp;</div>
 								<button id="timeInterrupt" class="btn danger span2" style="float: right;">Interrupt</button>
@@ -117,10 +119,12 @@
 
 					<h4>Future direction</h4>
 					<ul>
-						<li>offline</li>
-						<li>stored history</li>
-						<li>backend account</li>
-						<li>mobile application</li>
+						<li>Offline support</li>
+						<li>Stored history</li>
+						<li>Timeline statistics</li>
+						<li>Backend account</li>
+						<li>Chrome extension</li>
+						<li>Mobile application</li>
 						<li>PC application</li>
 					</ul>
 

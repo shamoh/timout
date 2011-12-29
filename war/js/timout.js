@@ -4,11 +4,12 @@ $(document).ready(function(){
 	var POPUP_CANCEL_TIMEOUT = 10600;
 //	var POPUP_CANCEL_TIMEOUT = 1000;
 	var LAST_TASK_DESC = "timout:last_task_desc";
+	var DEFAULT_TASK_DESC = '[nameless pomodoro task]';
 
-	var currentTaskTitle = 'n/a';
-	var currentTaskDesc = 'n/a';
+	var currentTaskTitle = 'Task';
+	var currentTaskDesc = DEFAULT_TASK_DESC;
 	var timerStart = null;
-	var timerName = 'n/a';
+	var timerName = 'unknown';
 	var finalTaskMillis = -1;
 
 	var timeout = null;
@@ -22,7 +23,7 @@ $(document).ready(function(){
 //		{ name: "pomodoro", title: "Pomodoro", time: 1500 },
 //		{ name: "long_break", title: "Long break", time: 600 },
 //		{ name: "short_break", title: "Short break", time: 300 }
-		{ name: "pomodoro", title: "Pomodoro", time: 25 },
+		{ name: "pomodoro", title: "Pomodoro Task", time: 3 },
 		{ name: "long_break", title: "Long break", time: 15 },
 		{ name: "short_break", title: "Short break", time: 5 }
 	];
@@ -200,7 +201,18 @@ $(document).ready(function(){
 
 	$('#taskDescription').html(localStorage[LAST_TASK_DESC]);
 	$('#taskDescription').val(localStorage[LAST_TASK_DESC]);
-	if (!window.webkitNotifications) {
+	// check for notifications support
+	if (window.webkitNotifications) {
+		console.log("Notifications are supported!");
+
+		permission = window.webkitNotifications.checkPermission();
+		console.log("Current permission: " + permission);
+		if (permission != 0) {
+			reqPerm = window.webkitNotifications.requestPermission()
+			console.log("Request Permission: " + reqPerm);
+		}
+	} else {
+		console.log("Notifications are not supported for this Browser/OS version yet.");
 		$('#wrong_browser').slideDown("slow");
 	}
 
@@ -214,7 +226,7 @@ $(document).ready(function(){
 
 		currentTaskDesc = $('#taskDescription').val();
 		if ( currentTaskDesc == '' ) {
-			currentTaskDesc = 'n/a';
+			currentTaskDesc = DEFAULT_TASK_DESC;
 		}
 
 		$('#currentTaskDesc').html(currentTaskDesc);
