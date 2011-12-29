@@ -1,13 +1,18 @@
 $(document).ready(function(){
 
 	var SOUND = true;
-	var POPUP_CANCEL_TIMEOUT = 10000;
+	var POPUP_CANCEL_TIMEOUT = 10600;
+//	var POPUP_CANCEL_TIMEOUT = 1000;
+	var LAST_TASK_DESC = "timout:last_task_desc";
 
 	var currentTaskTitle = 'n/a';
 	var currentTaskDesc = 'n/a';
 	var timerStart = null;
 	var timerName = 'n/a';
-	var finalTaskMillis = 0;
+	var finalTaskMillis = -1;
+
+	var timeout = null;
+	var popup = null;
 
 	var viewGroups = [
 		"breakGroup", "inputGroup", "timeGroup"
@@ -15,10 +20,16 @@ $(document).ready(function(){
 
 	var timers = [
 //		{ name: "pomodoro", title: "Pomodoro", time: 1500 },
-		{ name: "pomodoro", title: "Pomodoro", time: 5 },
-		{ name: "long_break", title: "Long break", time: 600 },
-		{ name: "short_break", title: "Short break", time: 300 }
+//		{ name: "long_break", title: "Long break", time: 600 },
+//		{ name: "short_break", title: "Short break", time: 300 }
+		{ name: "pomodoro", title: "Pomodoro", time: 25 },
+		{ name: "long_break", title: "Long break", time: 15 },
+		{ name: "short_break", title: "Short break", time: 5 }
 	];
+
+	//
+	// FUNCTIONS
+	//
 
 	function getTimer(name) {
 		console.log("getTimer: " + name);
@@ -55,14 +66,14 @@ $(document).ready(function(){
 		finalTaskMillis = timerStart.getTime() + (timer.time * 1000)
 		console.log("finalTaskMillis: " + finalTaskMillis + " => " + (new Date (finalTaskMillis)));
 
-		return setTimeout("onTick()", 1000);
+		timeout = setTimeout("onTick()", 1000);
 	};
 
 
 	function formatTimeSec(secs) {
 		var minutes, secs_remainder;
 //		secs = millis / 1000;
-		minutes = Math.round(secs / 60);
+		minutes = Math.floor(secs / 60);
 //		if (minutes < 10) minutes = "0" + minutes;
 		secs_remainder = secs - (minutes * 60);
 		if (secs_remainder < 10) secs_remainder = "0" + secs_remainder;
@@ -89,17 +100,32 @@ $(document).ready(function(){
 	}
 
 	function initViewGroup(name) {
+		if ( timeout != null ) {
+			console.log("Interrupt timeout: " + timeout);
+			clearTimeout(timeout);
+		}
+		finalTaskMillis = -1;
+
 		for (_i = 0, _len = viewGroups.length; _i < _len; _i++) {
 			viewGroup = viewGroups[_i];
 			if (viewGroup == name) {
-				$('#' + viewGroup).show("slow");
+//				$('#' + viewGroup).show("slow");
+				$('#' + viewGroup).slideDown("slow");
 			} else {
-				$('#' + viewGroup).hide("slow");
+//				$('#' + viewGroup).hide("slow");
+				$('#' + viewGroup).slideUp("slow");
 			}
+		}
+		if ( popup != null ) {
+			popup.cancel();
+			popup = null;
 		}
 	}
 
 	window.onTick = function() {
+		if ( finalTaskMillis == -1 ) {
+			return;
+		}
 		var currentTime = new Date();
 		var remTime = Math.round((finalTaskMillis - currentTime.getTime()) / 1000);
 		if ( remTime < 0 ) {
@@ -110,32 +136,41 @@ $(document).ready(function(){
 		console.log("onTick: " + (new Date()) + " - remTime: " + remTime);
 
 		if (remTime > 0) {
-			return setTimeout("onTick()", 1000);
+			timeout = setTimeout("onTick()", 1000);
 		} else {
-			return setTimeout("onTimeout()", 0);
+			setTimeout("onTimeout()", 0);
 		}
 	};
 
 	window.onTimeout = function() {
+		taskFinished();
+
 		var permission;
 		permission = window.webkitNotifications.checkPermission();
 		console.log("Permission: " + permission);
 		if (permission == 0) {
 			displayNotification();
 		} else {
-		console.log("Průšvih - nemám permission!");
+			console.log("NO window.webkitNotifications permission!");
 		}
-		//    $('#btn-run').button('reset');
-		return enable();
 	};
 
 	window.displayNotification = function() {
 		var permission;
 		permission = window.webkitNotifications.checkPermission();
 		console.log("Permission: " + permission);
-		window.popup = window.webkitNotifications.createHTMLNotification("popup.html");
+
+		var popup_html ;
+		if ( timerName == 'pomodoro' ) {
+			popup_html = "popup-pomodoro.html"
+		} else {
+			popup_html = "popup-break.html"
+		}
+
+		window.popup = popup = window.webkitNotifications.createHTMLNotification(popup_html);
 		popup.show();
-		return setTimeout("popup.cancel()", POPUP_CANCEL_TIMEOUT);
+
+		setTimeout("popup.cancel()", POPUP_CANCEL_TIMEOUT);
 	};
 
 	window.ding = function(mp3) {
@@ -144,63 +179,96 @@ $(document).ready(function(){
 		if (SOUND) return snd.play();
 	};
 
+	function taskFinished() {
+		$('#lastDescription').html(currentTaskDesc);
+
+		finalTaskMillis = -1;
+
+		if ( timerName == 'pomodoro' ) {
+			$('#currentTaskFinish').html(formatTimeDate(new Date()));
+
+			initViewGroup('breakGroup');
+		} else {
+			initViewGroup('inputGroup');
+		}
+	}
+
+
+	//
+	// INIT VALUES
+	//
+
+	$('#taskDescription').html(localStorage[LAST_TASK_DESC]);
+	$('#taskDescription').val(localStorage[LAST_TASK_DESC]);
+	if (!window.webkitNotifications) {
+		$('#wrong_browser').slideDown("slow");
+	}
+
+	//
+	// START TASK
+	//
 
 	$('#taskStart').click(function(event){
 		event.preventDefault();
-
-		initViewGroup('timeGroup');
-//		$('#inputGroup').hide("slow");
-//		$('#timeGroup').show("slow");
-
-//		$('#display').html('25:00');
-//		$('#display').addClass('pomodoro');
-//		$('#display').removeClass('short_break');
-//		$('#display').removeClass('long_break');
+		console.log("Clicked #taskStart");
 
 		currentTaskDesc = $('#taskDescription').val();
 		if ( currentTaskDesc == '' ) {
 			currentTaskDesc = 'n/a';
 		}
+
 		$('#currentTaskDesc').html(currentTaskDesc);
-//		$('#currentTitle').html('Running task');
+
+		initViewGroup('timeGroup');
 
 		initTimer('pomodoro');
 
-		// pridat task do seznamu pislednich/nejcastejsich
-		// nastartovat casomiru
-
+		localStorage[LAST_TASK_DESC] = currentTaskDesc;
 	});
 
-	$('#taskStorno').click(function(event){
+	//
+	// TIME INTERRUPTION
+	//
+
+	$('#timeInterrupt').click(function(event){
 		event.preventDefault();
+		console.log("Clicked #timeInterrupt");
+
+		initViewGroup('inputGroup');
 	});
 
-	$('#breakShortStart').click(function(event){
+	$('#breakCancel').click(function(event){
 		event.preventDefault();
+		console.log("Clicked #breakCancel");
 
-		$('#inputGroup').hide("slow");
-		$('#timeGroup').show("slow");
-
-		$('#display').html('5:00');
-		$('#display').removeClass('pomodoro');
-		$('#display').addClass('short_break');
-		$('#display').removeClass('long_break');
+		initViewGroup('inputGroup');
 	});
 
-	$('#breakLongStart').click(function(event){
+	//
+	// START BREAK
+	//
+
+	$('#shortBreak').click(function(event){
 		event.preventDefault();
+		console.log("Clicked #shortBreak");
 
-		$('#inputGroup').hide("slow");
-		$('#timeGroup').show("slow");
+		$('#lastDescription').html(currentTaskDesc);
 
-		$('#display').html('15:00');
-		$('#display').removeClass('pomodoro');
-		$('#display').removeClass('short_break');
-		$('#display').addClass('long_break');
+		initViewGroup('timeGroup');
+
+		initTimer('short_break');
 	});
 
-	$('#breakStorno').click(function(event){
+	$('#longBreak').click(function(event){
 		event.preventDefault();
+		console.log("Clicked #longBreak");
+
+		$('#lastDescription').html(currentTaskDesc);
+
+		initViewGroup('timeGroup');
+
+		initTimer('long_break');
 	});
+
 
 });

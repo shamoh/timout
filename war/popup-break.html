@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Timout</title>
+	<meta name="description" content="Your agile time management application">
+	<meta name="author" content="Libor Kramoliš">
+
+	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Le styles -->
+	<link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
+	<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.16.custom.css" rel="stylesheet"/>
+	<link href="css/timout.css" rel="stylesheet"/>
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+
+	<!--<script type="text/javascript" src="js/timer.js"></script>-->
+	<!--<script type="text/javascript" src="js/teas_en.js"></script>-->
+	<script type="text/javascript" src="js/bootstrap-buttons.js"></script>
+	<script type="text/javascript" src="js/bootstrap-twipsy.js"></script>
+	<script type="text/javascript" src="js/bootstrap-popover.js"></script>
+
+	<script type="text/javascript" src="js/timout.js"></script>
+
+	<style type="text/css">
+		body {
+			padding: 4px;
+		}
+		.well {
+			height: 108px;
+			padding: 4px 8px;
+		}
+	</style>
+</head>
+
+<body onload="ding('snd/alarm-break.mp3');">
+
+	<div class="well">
+		<span class="label warning">Break after task finished</span><p>
+		<blockquote>
+			<p id="taskDescription" style="font-weight: bold;">n/a</p>
+		</blockquote>
+	</div>
+
+</body>
+</html>
