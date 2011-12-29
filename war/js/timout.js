@@ -194,6 +194,40 @@ $(document).ready(function(){
 		}
 	}
 
+	//
+	// PERMISSION
+	//
+
+	$('#setPermission').click(function(event){
+		event.preventDefault();
+		console.log("Clicked #setPermission");
+
+		$('#missing_permission').modal('hide');
+
+		requestPermission();
+	});
+
+	$('#setPermissionClose').click(function(event){
+		event.preventDefault();
+		console.log("Clicked #setPermissionClose");
+
+		// set NEVER_ASK_AGAIN
+	});
+
+	function requestPermission() {
+		reqPerm = window.webkitNotifications.requestPermission(requestPermissionCallback)
+		console.log("Request Permission: " + reqPerm);
+	}
+
+	function requestPermissionCallback() {
+		permission = window.webkitNotifications.checkPermission();
+		console.log("requestPermissionCallback: " + permission);
+		if (permission == 1) {
+			$('#missing_permission').modal('show');
+		} else if ( permission == 2 ) {
+			$('#no_permission').slideDown("slow");
+		}
+	}
 
 	//
 	// INIT VALUES
@@ -207,9 +241,9 @@ $(document).ready(function(){
 
 		permission = window.webkitNotifications.checkPermission();
 		console.log("Current permission: " + permission);
-		if (permission != 0) {
-			reqPerm = window.webkitNotifications.requestPermission()
-			console.log("Request Permission: " + reqPerm);
+
+		if ( permission == 2 ) {
+			$('#no_permission').slideDown("slow");
 		}
 	} else {
 		console.log("Notifications are not supported for this Browser/OS version yet.");
@@ -223,6 +257,13 @@ $(document).ready(function(){
 	$('#taskStart').click(function(event){
 		event.preventDefault();
 		console.log("Clicked #taskStart");
+
+		if (window.webkitNotifications) {
+			permission = window.webkitNotifications.checkPermission();
+			if (permission == 1) {
+				requestPermission();
+			}
+		}
 
 		currentTaskDesc = $('#taskDescription').val();
 		if ( currentTaskDesc == '' ) {
@@ -281,6 +322,5 @@ $(document).ready(function(){
 
 		initTimer('long_break');
 	});
-
 
 });

@@ -23,6 +23,7 @@
 
 	<!--<script type="text/javascript" src="js/timer.js"></script>-->
 	<!--<script type="text/javascript" src="js/teas_en.js"></script>-->
+	<script type="text/javascript" src="js/bootstrap-modal.js"></script>
 	<script type="text/javascript" src="js/bootstrap-buttons.js"></script>
 	<script type="text/javascript" src="js/bootstrap-twipsy.js"></script>
 	<script type="text/javascript" src="js/bootstrap-popover.js"></script>
@@ -48,6 +49,13 @@
 						Notifications are not supported for this Browser/OS version yet.
 						This application needs <strong>desktop notifications</strong>,
 						which are currently implemented in <strong>Google Chrome</strong> only.
+					</p>
+				</div>
+				<div id="no_permission" class="alert-message warning" hidden="hidden">
+					<p><strong>Notifications Permission required!</strong><br/>
+						Notifications are not granted for this Browser.
+						<strong>Allow Notifications permission</strong>
+						to this application to use all cool application features.
 					</p>
 				</div>
 			</div>
@@ -142,6 +150,22 @@
 
 </div>
 <!-- /container -->
+
+<div id="missing_permission" class="modal hide fade">
+	<div class="modal-header">
+		<a id="setPermissionClose" href="" class="close">x</a>
+		<h3>Missing Notification Permission</h3>
+	</div>
+	<div class="modal-body">
+		<p>It is necessary to grant Notifications Permission to this application.
+			The permission is used to show desktop notification and to play alert sound after task or break times out.
+		</p>
+	</div>
+	<div class="modal-footer">
+		<button id="setPermission" class="btn primary span3">Set Permission</button>
+	</div>
+</div>
+
 
 <a href="https://github.com/shamoh/timout">
 	<img style="position: absolute; z-index: 5; top: 0; right: 0; border: 0;"
