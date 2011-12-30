@@ -7,6 +7,7 @@
 	<title>Timout</title>
 	<meta name="description" content="Your agile time management application">
 	<meta name="author" content="Libor Kramoliš">
+	<meta name="keywords" content="agile, time, management, html5, offline, mampadla, pomodoro, gtd">
 
 	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
 	<!--[if lt IE 9]>
@@ -30,6 +31,26 @@
 
 	<script type="text/javascript" src="js/timout.js"></script>
 
+	<!-- Place this render call where appropriate -->
+	<script type="text/javascript">
+		(function() {
+		var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+		po.src = 'https://apis.google.com/js/plusone.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+		})();
+	</script>
+	<!-- Google Analytics -->
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-3088225-2']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
 </head>
 
 <body>
@@ -93,6 +114,34 @@
 								<button id="taskStart" class="btn success span2">Start</button>
 							</div>
 						</form>
+						<div class="row">&nbsp;</div>
+						<div class="clearfix">
+							<h3>The Pomodoro Technique</h3>
+							<p>
+							<span class="label warning">What is it?</span>
+							<strong>The <a href="http://www.pomodorotechnique.com/">Pomodoro Technique</a>®
+							is a way to get the most out of time management.</strong>
+							Turn time into a valuable ally to accomplish what we want to do and chart continuous
+							improvement in the way we do it.
+							</p>
+							<p>
+							<strong>Francesco Cirillo</strong> created the Pomodoro Technique® in the 1980s.
+								It is now practiced by professional teams and individuals around the world.
+							</p>
+						</div>
+						<div class="clearfix">
+							<p>
+							<span class="label warning">How can I start?</span>
+							<strong>The basic unit of work in the Pomodoro Technique® can be split in five simple steps:</strong>
+							<ol>
+								<li>Choose a task to be accomplished</li>
+								<li>Set the Pomodoro to 25 minutes (the Pomodoro is the timer)</li>
+								<li>Work on the task until the Pomodoro rings, then put a check on your sheet of paper</li>
+								<li>Take a short break (5 minutes is OK)</li>
+								<li>Every 4 Pomodoros take a longer break</li>
+							</ol>
+							</p>
+						</div>
 					</div>
 
 					<div id="timeGroup" hidden="hidden">
@@ -117,30 +166,33 @@
 				<div class="well">
 					<h2>About</h2>
 
-					<span class="label success">SUPPORT ME</span> Give me a <strong>+1</strong> at Chrome Web Store! Thanks.
+					Simple HTML5 application for agile time management, see
+					<strong><a href="http://www.pomodorotechnique.com/">Pomodoro Technique</a>®</strong>.
 					<br />
-					<span class="label notice">Notice</span> App name <strong>Timout</strong> is not typo it is intention. ;-)
+					<span class="label success">SUPPORT ME</span>
+					Give me a <strong>+1</strong> at
+					<a href="https://chrome.google.com/webstore/detail/dekpabfaimofbinkbjlgdkkecodejmbf">Chrome Web Store</a>
+					or use <strong>+1 button</strong> below. Thanks!
+					<!-- Place this tag where you want the +1 button to render -->
+					<div class="g-plusone" data-annotation="inline" data-size="medium" data-width="250"
+						 data-href="https://chrome.google.com/webstore/detail/dekpabfaimofbinkbjlgdkkecodejmbf"></div>
+					<br />
 
 					<h3>Project</h3>
 
-					In progress, stay tuned.
+					In progress, stay tuned. Future direction:
 
-					<h4>Future direction</h4>
 					<ul>
-						<li>Offline support</li>
-						<li>Stored history</li>
-						<li>Timeline statistics</li>
-						<li>Backend account</li>
-						<li>Chrome extension</li>
-						<li>Mobile application</li>
-						<li>PC application</li>
+						<li>Offline support, Stored history, Timeline statistics</li>
+						<li>Cloud Backend at AppEngine</li>
+						<li>Chrome extension, Mobile application, PC application</li>
 					</ul>
 
-
-					<h4>gplus</h4>
+					<span class="label notice">Notice</span> App name <strong>Timout</strong> is not typo it is intention. ;-)
 
 					<h3>Author</h3>
 
+					<strong><a href="https://twitter.com/#!/liborkramolis">Libor Kramoliš</a></strong>
 					<p>&copy; timout (at) kramolis.cz, 2011</p>
 				</div>
 			</div>
