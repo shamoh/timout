@@ -13,7 +13,7 @@ body {
 }
 
 .well {
-	height: 480px;
+	height: 500px;
 }
 
 /* The white background content wrapper */
@@ -44,7 +44,7 @@ padding: 20px;
 	width: 260px;
 	border-radius: 10px;
 	color: white;
-	text-align: right;
+	text-align: center;
 	line-height: 120px;
 }
 .pomodoro {
@@ -61,5 +61,9 @@ padding: 20px;
 	text-align: left;
 	font-weight: bold;
 	font-size: 32px;
+}
+
+a.nohover:hover {
+	text-decoration: none;
 }
 

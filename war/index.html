@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 
-<!--<html lang="en" manifest="timout.appcache">-->
-<html lang="en">
+<html lang="en" manifest="timout.appcache">
+<!--<html lang="en">-->
 <head>
 	<meta charset="utf-8">
-	<title>Timout</title>
-	<meta name="description" content="Your agile time management application">
+	<title>Timout - Time Management</title>
+	<meta name="description" content="Your agile time management application - The Pomodoro Technique">
 	<meta name="author" content="Libor Kramoliš">
 	<meta name="keywords" content="agile, time, management, html5, offline, mampadla, pomodoro, gtd">
 
@@ -16,14 +16,10 @@
 
 	<!-- Le styles -->
 	<link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
-	<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.16.custom.css" rel="stylesheet"/>
 	<link href="css/timout.css" rel="stylesheet"/>
 
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
 
-	<!--<script type="text/javascript" src="js/timer.js"></script>-->
-	<!--<script type="text/javascript" src="js/teas_en.js"></script>-->
 	<script type="text/javascript" src="js/bootstrap-modal.js"></script>
 	<script type="text/javascript" src="js/bootstrap-buttons.js"></script>
 	<script type="text/javascript" src="js/bootstrap-twipsy.js"></script>
@@ -59,9 +55,9 @@
 
 	<div class="content">
 		<div class="page-header">
-			<h1>Timout
-				<small>Your agile time management application</small>
-			</h1>
+			<a href="/" class="nohover"><h1>Timout
+				<small>Your agile time management application - The Pomodoro Technique</small>
+			</h1></a>
 		</div>
 		<div class="row">
 			<div class="span18">
@@ -119,7 +115,7 @@
 							<h3>The Pomodoro Technique</h3>
 							<p>
 							<span class="label warning">What is it?</span>
-							<strong>The <a href="http://www.pomodorotechnique.com/">Pomodoro Technique</a>®
+							<strong>The <a target="_blank" href="http://www.pomodorotechnique.com/">Pomodoro Technique</a>®
 							is a way to get the most out of time management.</strong>
 							Turn time into a valuable ally to accomplish what we want to do and chart continuous
 							improvement in the way we do it.
@@ -129,18 +125,24 @@
 								It is now practiced by professional teams and individuals around the world.
 							</p>
 						</div>
-						<div class="clearfix">
-							<p>
-							<span class="label warning">How can I start?</span>
-							<strong>The basic unit of work in the Pomodoro Technique® can be split in five simple steps:</strong>
-							<ol>
-								<li>Choose a task to be accomplished</li>
-								<li>Set the Pomodoro to 25 minutes (the Pomodoro is the timer)</li>
-								<li>Work on the task until the Pomodoro rings, then put a check on your sheet of paper</li>
-								<li>Take a short break (5 minutes is OK)</li>
-								<li>Every 4 Pomodoros take a longer break</li>
-							</ol>
-							</p>
+						<!--<div class="clearfix">-->
+						<div class="row">
+							<div class="span8">
+								<p>
+								<span class="label warning">How can I start?</span>
+								<strong>The basic unit of work in the Pomodoro Technique® can be split in five simple steps:</strong>
+								<ol>
+									<li>Choose a task to be accomplished</li>
+									<li>Set the Pomodoro to 25 minutes (the Pomodoro is the timer)</li>
+									<li>Work on the task until the Pomodoro rings, then put a check on your sheet of paper</li>
+									<li>Take a short break (5 minutes is OK)</li>
+									<li>Every 4 Pomodoros take a longer break</li>
+								</ol>
+								</p>
+							</div>
+							<div class="span4">
+								<img src="images/tomato_200_trans.png" alt="Tomato">
+							</div>
 						</div>
 					</div>
 
@@ -167,11 +169,11 @@
 					<h2>About</h2>
 
 					Simple HTML5 application for agile time management, see
-					<strong><a href="http://www.pomodorotechnique.com/">Pomodoro Technique</a>®</strong>.
+					<strong><a target="_blank" href="http://www.pomodorotechnique.com/">Pomodoro Technique</a>®</strong>.
 					<br />
 					<span class="label success">SUPPORT ME</span>
 					Give me a <strong>+1</strong> at
-					<a href="https://chrome.google.com/webstore/detail/dekpabfaimofbinkbjlgdkkecodejmbf">Chrome Web Store</a>
+					<a target="_blank" href="https://chrome.google.com/webstore/detail/dekpabfaimofbinkbjlgdkkecodejmbf">Chrome Web Store</a>
 					or use <strong>+1 button</strong> below. Thanks!
 					<!-- Place this tag where you want the +1 button to render -->
 					<div class="g-plusone" data-annotation="inline" data-size="medium" data-width="250"
@@ -183,16 +185,18 @@
 					In progress, stay tuned. Future direction:
 
 					<ul>
-						<li>Offline support, Stored history, Timeline statistics</li>
+						<li>Stored history, Timeline statistics</li>
 						<li>Cloud Backend at AppEngine</li>
 						<li>Chrome extension, Mobile application, PC application</li>
+						<li>Integrate to other backends - RTM, Google Tasks</li>
 					</ul>
 
-					<span class="label notice">Notice</span> App name <strong>Timout</strong> is not typo it is intention. ;-)
+					<span class="label notice">Notice</span> Name <strong>Timout</strong> is not typo.
+					I'm looking for cool acronym explanation. ;-)
 
 					<h3>Author</h3>
 
-					<strong><a href="https://twitter.com/#!/liborkramolis">Libor Kramoliš</a></strong>
+					<strong><a target="_blank" href="https://twitter.com/#!/liborkramolis">Libor Kramoliš</a></strong>
 					<p>&copy; timout (at) kramolis.cz, 2011</p>
 				</div>
 			</div>
@@ -219,7 +223,7 @@
 </div>
 
 
-<a href="https://github.com/shamoh/timout">
+<a target="_blank" href="https://github.com/shamoh/timout">
 	<img style="position: absolute; z-index: 5; top: 0; right: 0; border: 0;"
 		 src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"
 		 alt="Fork me on GitHub" />

@@ -1,0 +1,36 @@
+CACHE MANIFEST
+
+# Version 1
+
+CACHE:
+#HTML
+popup-pomodoro.html
+popup-break.html
+
+# images
+favicon.ico
+images/tomato_200_trans.png
+
+# styles
+css/timout.css
+
+# scripts
+js/bootstrap-twipsy.js
+js/bootstrap-buttons.js
+js/bootstrap-popover.js
+js/bootstrap-modal.js
+js/timout.js
+
+# sound
+snd/alarm-pomodoro.mp3
+snd/alarm-break.mp3
+
+# jquery
+http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js
+
+# bootstrap
+http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css
+
+# everything else is served from internet
+NETWORK:
+*

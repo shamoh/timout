@@ -4,6 +4,7 @@
 /timout.iml
 /_bak/
 /_bak2/
+/_bak3/
 /secret.txt
 /hints.txt
 /war/WEB-INF/lib
@@ -12,3 +13,4 @@
 /gradle/
 /gradlew
 /gradlew.bat
+/src/manifest/timout.zip

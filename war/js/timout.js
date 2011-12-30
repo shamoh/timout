@@ -82,7 +82,7 @@ $(document).ready(function(){
 	};
 
 	function formatTimeDate(date) {
-		console.log("formatTimeDate: " + date);
+		console.log("formatTimeDate: " + date)
 
 		var h=date.getHours();
 		var m=date.getMinutes();
@@ -134,7 +134,7 @@ $(document).ready(function(){
 		}
 		$('#currentTime').html(formatTimeSec(remTime));
 
-		console.log("onTick: " + (new Date()) + " - remTime: " + remTime);
+//		console.log("onTick: " + (new Date()) + " - remTime: " + remTime);
 
 		if (remTime > 0) {
 			timeout = setTimeout("onTick()", 1000);
@@ -156,7 +156,7 @@ $(document).ready(function(){
 		}
 	};
 
-	window.displayNotification = function() {
+	function displayNotification() {
 		var permission;
 		permission = window.webkitNotifications.checkPermission();
 		console.log("Permission: " + permission);
@@ -174,7 +174,7 @@ $(document).ready(function(){
 		setTimeout("popup.cancel()", POPUP_CANCEL_TIMEOUT);
 	};
 
-	window.ding = function(mp3) {
+	function ding(mp3) {
 		var snd;
 		snd = new Audio(mp3);
 		if (SOUND) return snd.play();
