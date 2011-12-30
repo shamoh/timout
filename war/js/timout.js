@@ -21,7 +21,7 @@ $(document).ready(function(){
 
 	var timers = [
 		{ name: "pomodoro", title: "Pomodoro", time: 1500 },
-		{ name: "long_break", title: "Long break", time: 600 },
+		{ name: "long_break", title: "Long break", time: 900 },
 		{ name: "short_break", title: "Short break", time: 300 }
 //		{ name: "pomodoro", title: "Pomodoro Task", time: 25 },
 //		{ name: "long_break", title: "Long break", time: 15 },

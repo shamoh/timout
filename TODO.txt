@@ -1,0 +1,5 @@
+- screenshots
+- vlastni hudba - vcetne dlouhe mezery
+- delsi dobu zobrazovat notifikaci
+- nekde na strance zobrazit verzi aplikace
+- trvalejsi notifikace (primo na strance) o tom, co se stalo - ty desktop notifikace casem zmizi a uz se nevi, co se stalo
