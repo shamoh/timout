@@ -1,6 +1,6 @@
 CACHE MANIFEST
 
-# Version 3
+# Version 4
 
 CACHE:
 #HTML
@@ -13,23 +13,22 @@ images/tomato_200_trans.png
 
 # styles
 css/timout.css
+# bootstrap
+css/bootstrap.min.css
 
 # scripts
+js/timout.js
+# bootstrap
 js/bootstrap-twipsy.js
 js/bootstrap-buttons.js
 js/bootstrap-popover.js
 js/bootstrap-modal.js
-js/timout.js
+# jquery
+js/jquery.min.js
 
 # sound
 snd/alarm-pomodoro.mp3
 snd/alarm-break.mp3
-
-# jquery
-http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js
-
-# bootstrap
-http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css
 
 # github
 http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png

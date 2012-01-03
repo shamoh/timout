@@ -1,7 +1,8 @@
 $(document).ready(function(){
 
-	var SOUND = true;
-	var POPUP_CANCEL_TIMEOUT = 10600;
+	var POPUP_CANCEL_TIMEOUT = -1;
+//	var POPUP_CANCEL_TIMEOUT = 66666;
+//	var POPUP_CANCEL_TIMEOUT = 10600;
 //	var POPUP_CANCEL_TIMEOUT = 1000;
 	var LAST_TASK_DESC = "timout:last_task_desc";
 	var DEFAULT_TASK_DESC = '[nameless pomodoro task]';
@@ -9,6 +10,7 @@ $(document).ready(function(){
 	var currentTaskTitle = 'Task';
 	var currentTaskDesc = DEFAULT_TASK_DESC;
 	var timerStart = null;
+	var timerFinish = null;
 	var timerName = 'unknown';
 	var finalTaskMillis = -1;
 
@@ -19,13 +21,17 @@ $(document).ready(function(){
 		"breakGroup", "inputGroup", "timeGroup"
 	];
 
+	var inputMessages = [
+		"interruptedTaskMessage", "skippedBreakMessage", "lastTaskMessage", "interruptedBreakMessage"
+	];
+
 	var timers = [
 		{ name: "pomodoro", title: "Pomodoro", time: 1500 },
 		{ name: "long_break", title: "Long break", time: 900 },
 		{ name: "short_break", title: "Short break", time: 300 }
-//		{ name: "pomodoro", title: "Pomodoro Task", time: 25 },
-//		{ name: "long_break", title: "Long break", time: 15 },
-//		{ name: "short_break", title: "Short break", time: 5 }
+//		{ name: "pomodoro", title: "Pomodoro Task", time: 5 },
+//		{ name: "long_break", title: "Long break", time: 3 },
+//		{ name: "short_break", title: "Short break", time: 1 }
 	];
 
 	//
@@ -110,16 +116,25 @@ $(document).ready(function(){
 		for (_i = 0, _len = viewGroups.length; _i < _len; _i++) {
 			viewGroup = viewGroups[_i];
 			if (viewGroup == name) {
-//				$('#' + viewGroup).show("slow");
 				$('#' + viewGroup).slideDown("slow");
 			} else {
-//				$('#' + viewGroup).hide("slow");
 				$('#' + viewGroup).slideUp("slow");
 			}
 		}
 		if ( popup != null ) {
 			popup.cancel();
 			popup = null;
+		}
+	}
+
+	function initInputMessages(name) {
+		for (_i = 0, _len = inputMessages.length; _i < _len; _i++) {
+			inputMessage = inputMessages[_i];
+			if (inputMessage == name) {
+				$('#' + inputMessage).show();
+			} else {
+				$('#' + inputMessage).hide();
+			}
 		}
 	}
 
@@ -171,25 +186,26 @@ $(document).ready(function(){
 		window.popup = popup = window.webkitNotifications.createHTMLNotification(popup_html);
 		popup.show();
 
-		setTimeout("popup.cancel()", POPUP_CANCEL_TIMEOUT);
-	};
-
-	function ding(mp3) {
-		var snd;
-		snd = new Audio(mp3);
-		if (SOUND) return snd.play();
-	};
+		if ( POPUP_CANCEL_TIMEOUT != -1 ) {
+			setTimeout("popup.cancel()", POPUP_CANCEL_TIMEOUT);
+		}
+	}
 
 	function taskFinished() {
 		$('#lastDescription').html(currentTaskDesc);
 
 		finalTaskMillis = -1;
 
+		timerFinish = new Date();
 		if ( timerName == 'pomodoro' ) {
-			$('#currentTaskFinish').html(formatTimeDate(new Date()));
+			$('#currentTaskFinish').html(formatTimeDate(timerFinish));
 
 			initViewGroup('breakGroup');
 		} else {
+			$('#lastBreakFinish').html(formatTimeDate(timerFinish));
+
+			initInputMessages('lastTaskMessage');
+
 			initViewGroup('inputGroup');
 		}
 	}
@@ -287,12 +303,32 @@ $(document).ready(function(){
 		event.preventDefault();
 		console.log("Clicked #timeInterrupt");
 
+		if ( timerName == 'pomodoro' ) {
+			$('#lastTaskStart').html(formatTimeDate(timerStart));
+			duration = Math.round((new Date() - timerStart)/1000);
+			console.log("duration: " + duration);
+			$('#lastTaskDuration').html(formatTimeSec(duration));
+
+			initInputMessages('interruptedTaskMessage');
+		} else {
+			$('#lastTaskFinish2').html(formatTimeDate(timerFinish));
+			duration = Math.round((new Date() - timerFinish)/1000);
+			console.log("duration: " + duration);
+			$('#lastBreakDuration').html(formatTimeSec(duration));
+
+			initInputMessages('interruptedBreakMessage');
+		}
+
 		initViewGroup('inputGroup');
 	});
 
 	$('#breakCancel').click(function(event){
 		event.preventDefault();
 		console.log("Clicked #breakCancel");
+
+		$('#lastTaskFinish').html(formatTimeDate(timerFinish));
+
+		initInputMessages('skippedBreakMessage');
 
 		initViewGroup('inputGroup');
 	});
