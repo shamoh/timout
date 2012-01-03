@@ -3,21 +3,21 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Timout - Time Management</title>
+	<title>Timout - Time Management -- Break after task finished</title>
 	<meta name="description" content="Your agile time management application - The Pomodoro Technique">
 	<meta name="author" content="Libor Kramoliš">
 	<meta name="keywords" content="agile, time, management, html5, offline, mampadla, pomodoro, gtd">
+
+	<!-- Le styles -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/timout.css"/>
 
 	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
 	<!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 
-	<!-- Le styles -->
-	<link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
-	<link href="css/timout.css" rel="stylesheet"/>
-
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
 
 	<script type="text/javascript" src="js/bootstrap-modal.js"></script>
 	<script type="text/javascript" src="js/bootstrap-buttons.js"></script>
@@ -25,16 +25,6 @@
 	<script type="text/javascript" src="js/bootstrap-popover.js"></script>
 
 	<script type="text/javascript" src="js/timout.js"></script>
-
-	<style type="text/css">
-		body {
-			padding: 4px;
-		}
-		.well {
-			height: 108px;
-			padding: 4px 8px;
-		}
-	</style>
 
 	<!-- Google Analytics -->
 	<script type="text/javascript">
@@ -48,9 +38,23 @@
 		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 		})();
 	</script>
+
+	<style type="text/css">
+		body {
+		padding: 4px;
+		}
+		.well {
+		height: 108px;
+		padding: 4px 8px;
+		}
+	</style>
 </head>
 
-<body onload="ding('snd/alarm-break.mp3');">
+<!--<body onload="ding('snd/alarm-break.mp3');">-->
+<body>
+
+	<audio src="snd/alarm-break.mp3" preload="auto" autoplay="autoplay" loop="loop">
+	</audio>
 
 	<div class="well">
 		<span class="label warning">Break after task finished</span><p>
