@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 
+<!--<html lang="en" manifest="timout.appcache-NO_CACHE">-->
 <html lang="en" manifest="timout.appcache">
 <!--<html lang="en">-->
 <head>
@@ -9,16 +10,16 @@
 	<meta name="author" content="Libor Kramoliš">
 	<meta name="keywords" content="agile, time, management, html5, offline, mampadla, pomodoro, gtd">
 
+	<!-- Le styles -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/timout.css" />
+
 	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
 	<!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 
-	<!-- Le styles -->
-	<link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
-	<link href="css/timout.css" rel="stylesheet"/>
-
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
 
 	<script type="text/javascript" src="js/bootstrap-modal.js"></script>
 	<script type="text/javascript" src="js/bootstrap-buttons.js"></script>
@@ -27,14 +28,6 @@
 
 	<script type="text/javascript" src="js/timout.js"></script>
 
-	<!-- Place this render call where appropriate -->
-	<script type="text/javascript">
-		(function() {
-		var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-		po.src = 'https://apis.google.com/js/plusone.js';
-		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-		})();
-	</script>
 	<!-- Google Analytics -->
 	<script type="text/javascript">
 		var _gaq = _gaq || [];
@@ -45,6 +38,15 @@
 		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
 		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+	<!-- Place this render call where appropriate -->
+	<script type="text/javascript">
+		(function() {
+		var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+		po.src = 'https://apis.google.com/js/plusone.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
 		})();
 	</script>
 </head>
@@ -103,7 +105,6 @@
 						<form action="">
 							<div class="clearfix">
 								<h2>Pomodoro Task</h2>
-								<!--<label for="taskDescription" class="taskLabel">Task</label>-->
 							</div>
 							<div class="clearfix">
 								<input id="taskDescription" class="" type="text" style="width: 600px" placeholder="Describe your pomodoro task">
@@ -111,6 +112,25 @@
 							</div>
 						</form>
 						<div class="row">&nbsp;</div>
+						<div class="row">
+							<div class="span12">
+								<div id="interruptedTaskMessage" class="alert-message error" hidden="hidden">
+									The last task was started at <span id="lastTaskStart"></span>
+									but was interrupted after <span id="lastTaskDuration"></span> minutes before its finish!
+								</div>
+								<div id="skippedBreakMessage" class="alert-message warning" hidden="hidden">
+									The last task was finished at <span id="lastTaskFinish"></span>
+									but you did not take any break!
+								</div>
+								<div id="lastTaskMessage" class="alert-message success" hidden="hidden">
+									You finished a break at <span id="lastBreakFinish"></span> after the last finished task.
+								</div>
+								<div id="interruptedBreakMessage" class="alert-message info" hidden="hidden">
+									The last task was finished at <span id="lastTaskFinish2"></span>
+									but a break was interrupted after <span id="lastBreakDuration"></span> minutes before it's finish!
+								</div>
+							</div>
+						</div>
 						<div class="clearfix">
 							<h3>The Pomodoro Technique</h3>
 							<p>
@@ -125,7 +145,6 @@
 								It is now practiced by professional teams and individuals around the world.
 							</p>
 						</div>
-						<!--<div class="clearfix">-->
 						<div class="row">
 							<div class="span8">
 								<p>
@@ -173,7 +192,7 @@
 					<br />
 					<span class="label success">SUPPORT ME</span>
 					Give me a <strong>+1</strong> at
-					<a target="_blank" href="https://chrome.google.com/webstore/detail/dekpabfaimofbinkbjlgdkkecodejmbf">Chrome Web Store</a>
+					<a target="_blank" href="https://chrome.google.com/webstore/detail/dekpabfaimofbinkbjlgdkkecodejmbf?hl=en">Chrome Web Store</a>
 					or use <strong>+1 button</strong> below. Thanks!
 					<!-- Place this tag where you want the +1 button to render -->
 					<div class="g-plusone" data-annotation="inline" data-size="medium" data-width="250"
@@ -197,12 +216,15 @@
 					<h3>Author</h3>
 
 					<strong><a target="_blank" href="https://twitter.com/#!/liborkramolis">Libor Kramoliš</a></strong>
-					<p>&copy; timout (at) kramolis.cz, 2011</p>
 				</div>
 			</div>
 
 		</div>
 	</div>
+
+	<footer>
+		<p>&copy;2011 timout (at) kramolis.cz - v0.0.2.1/4/4</p>
+	</footer>
 
 </div>
 <!-- /container -->
@@ -221,7 +243,6 @@
 		<button id="setPermission" class="btn primary span3">Set Permission</button>
 	</div>
 </div>
-
 
 <a target="_blank" href="https://github.com/shamoh/timout">
 	<img style="position: absolute; z-index: 5; top: 0; right: 0; border: 0;"
