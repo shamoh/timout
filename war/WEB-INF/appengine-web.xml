@@ -31,8 +31,10 @@
 	<precompilation-enabled>true</precompilation-enabled>
 
 	<static-files>
-		<include path="*.html"/>
-		<include path="test.html" expiration="5h"/>
+		<include path="**.html" expiration="12h"/>
+		<include path="**.js" expiration="12h"/>
+		<include path="**.css" expiration="12h"/>
+		<!-- exclude groovy files -->
 		<exclude path="/WEB-INF/**.groovy"/>
 		<exclude path="**.gtpl"/>
 	</static-files>
