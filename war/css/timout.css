@@ -67,3 +67,6 @@ a.nohover:hover {
 	text-decoration: none;
 }
 
+html {
+	overflow: auto;
+}
