@@ -1,6 +1,6 @@
 CACHE MANIFEST
 
-# Version 4-S1
+# Version 4-S4
 
 CACHE:
 #HTML
@@ -27,8 +27,9 @@ js/bootstrap-modal.js
 js/jquery.min.js
 
 # sound
-snd/alarm-pomodoro.mp3
-snd/alarm-break.mp3
+snd/break-finished.wav
+snd/finished-loop.wav
+snd/pomodoro-finished.wav
 
 # github
 http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png
