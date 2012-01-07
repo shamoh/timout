@@ -5,6 +5,7 @@ $(document).ready(function(){
 //	var POPUP_CANCEL_TIMEOUT = 10600;
 //	var POPUP_CANCEL_TIMEOUT = 1000;
 	var LAST_TASK_DESC = "timout:last_task_desc";
+	var LAST_TASK_START_TIME = "timout:last_task_start_time";
 	var DEFAULT_TASK_DESC = '[nameless pomodoro task]';
 
 	var currentTaskTitle = 'Task';
@@ -29,6 +30,9 @@ $(document).ready(function(){
 		{ name: "pomodoro", title: "Pomodoro", time: 1500 },
 		{ name: "long_break", title: "Long break", time: 900 },
 		{ name: "short_break", title: "Short break", time: 300 }
+//		{ name: "pomodoro", title: "Pomodoro Task", time: 25 },
+//		{ name: "long_break", title: "Long break", time: 15 },
+//		{ name: "short_break", title: "Short break", time: 5 }
 //		{ name: "pomodoro", title: "Pomodoro Task", time: 5 },
 //		{ name: "long_break", title: "Long break", time: 3 },
 //		{ name: "short_break", title: "Short break", time: 1 }
@@ -251,6 +255,8 @@ $(document).ready(function(){
 
 	$('#taskDescription').html(localStorage[LAST_TASK_DESC]);
 	$('#taskDescription').val(localStorage[LAST_TASK_DESC]);
+	$('#pomodoroStart').html(localStorage[LAST_TASK_START_TIME]);
+
 	// check for notifications support
 	if (window.webkitNotifications) {
 		console.log("Notifications are supported!");
@@ -293,6 +299,7 @@ $(document).ready(function(){
 		initTimer('pomodoro');
 
 		localStorage[LAST_TASK_DESC] = currentTaskDesc;
+		localStorage[LAST_TASK_START_TIME] = formatTimeDate(new Date());
 	});
 
 	//
@@ -303,16 +310,23 @@ $(document).ready(function(){
 		event.preventDefault();
 		console.log("Clicked #timeInterrupt");
 
+		now = new Date();
+		console.log("now: " + now);
 		if ( timerName == 'pomodoro' ) {
+			console.log("timerStart : " + timerStart);
+
 			$('#lastTaskStart').html(formatTimeDate(timerStart));
-			duration = Math.round((new Date() - timerStart)/1000);
+			duration = Math.round((now - timerStart)/1000);
 			console.log("duration: " + duration);
 			$('#lastTaskDuration').html(formatTimeSec(duration));
 
 			initInputMessages('interruptedTaskMessage');
 		} else {
+			console.log("timerFinish: " + timerFinish);
+			console.log("timerStart : " + timerStart);
+
 			$('#lastTaskFinish2').html(formatTimeDate(timerFinish));
-			duration = Math.round((new Date() - timerFinish)/1000);
+			duration = Math.round((now - timerStart)/1000);
 			console.log("duration: " + duration);
 			$('#lastBreakDuration').html(formatTimeSec(duration));
 
