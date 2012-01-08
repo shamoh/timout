@@ -255,7 +255,12 @@ $(document).ready(function(){
 
 	$('#taskDescription').html(localStorage[LAST_TASK_DESC]);
 	$('#taskDescription').val(localStorage[LAST_TASK_DESC]);
-	$('#pomodoroStart').html(localStorage[LAST_TASK_START_TIME]);
+	if ( localStorage[LAST_TASK_START_TIME] ) {
+		pomodoroStart = new Date();
+		pomodoroStart.setTime(localStorage[LAST_TASK_START_TIME]);
+		console.log("pomodoroStart: " + pomodoroStart);
+		$('#pomodoroStart').html(formatTimeDate(pomodoroStart));
+	}
 
 	// check for notifications support
 	if (window.webkitNotifications) {
@@ -299,7 +304,7 @@ $(document).ready(function(){
 		initTimer('pomodoro');
 
 		localStorage[LAST_TASK_DESC] = currentTaskDesc;
-		localStorage[LAST_TASK_START_TIME] = formatTimeDate(new Date());
+		localStorage[LAST_TASK_START_TIME] = (new Date()).getTime();
 	});
 
 	//
