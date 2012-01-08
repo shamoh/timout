@@ -1,6 +1,6 @@
 CACHE MANIFEST
 
-# Version 4-S5a
+# Version 5
 
 CACHE:
 #HTML
@@ -10,6 +10,7 @@ popup-break.html
 # images
 favicon.ico
 images/tomato_200_trans.png
+images/tea-clock--screenshot.jpg
 
 # styles
 css/timout.css
