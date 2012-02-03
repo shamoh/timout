@@ -24,8 +24,10 @@
 	<script type="text/javascript" src="js/bootstrap-buttons.js"></script>
 	<script type="text/javascript" src="js/bootstrap-twipsy.js"></script>
 	<script type="text/javascript" src="js/bootstrap-popover.js"></script>
+	<script type="text/javascript" src="js/bootstrap-tabs.js"></script>
 
 	<script type="text/javascript" src="js/timout.js"></script>
+	<script type="text/javascript" src="js/timoutDB.js"></script>
 
 	<!-- Google Analytics -->
 	<script type="text/javascript">
@@ -160,38 +162,55 @@
 							</div>
 						</div>
 
-						<div class="clearfix">
-							<h3>The Pomodoro Technique</h3>
-							<p>
-							<span class="label warning">What is it?</span>
-							<strong>The <a target="_blank" href="http://www.pomodorotechnique.com/">Pomodoro Technique</a>®
-							is a way to get the most out of time management.</strong>
-							Turn time into a valuable ally to accomplish what we want to do and chart continuous
-							improvement in the way we do it.
-							</p>
-							<p>
-							<strong>Francesco Cirillo</strong> created the Pomodoro Technique® in the 1980s.
-								It is now practiced by professional teams and individuals around the world.
-							</p>
-						</div>
-						<div class="row">
-							<div class="span8">
-								<p>
-								<span class="label warning">How can I start?</span>
-								<strong>The basic unit of work in the Pomodoro Technique® can be split in five simple steps:</strong>
-								<ol>
-									<li>Choose a task to be accomplished</li>
-									<li>Set the Pomodoro to 25 minutes (the Pomodoro is the timer)</li>
-									<li>Work on the task until the Pomodoro rings, then put a check on your sheet of paper</li>
-									<li>Take a short break (5 minutes is OK)</li>
-									<li>Every 4 Pomodoros take a longer break</li>
-								</ol>
-								</p>
+						<ul class="tabs">
+							<li><a href="#">Last Taks</a></li>
+							<li><a href="#">Most Used Talks</a></li>
+							<li class="active"><a href="#">The Pomodoro Technique</a></li>
+						</ul>
+
+						<div id="tabsContents">
+							<div id="tabLastTasks" hidden2="hidden">
+								<ul id="lastTasksItems"/>
 							</div>
-							<div class="span4">
-								<img src="images/tomato_200_trans.png" alt="Tomato">
+							<div id="tabUsedTasks" hidden="hidden">
+								<ul id="usedTasksItems"/>
+							</div>
+							<div id="tabPomodoroInfo">
+								<div class="clearfix">
+									<h3>The Pomodoro Technique</h3>
+									<p>
+										<span class="label warning">What is it?</span>
+										<strong>The <a target="_blank" href="http://www.pomodorotechnique.com/">Pomodoro Technique</a>®
+											is a way to get the most out of time management.</strong>
+										Turn time into a valuable ally to accomplish what we want to do and chart continuous
+										improvement in the way we do it.
+									</p>
+									<p>
+										<strong>Francesco Cirillo</strong> created the Pomodoro Technique® in the 1980s.
+										It is now practiced by professional teams and individuals around the world.
+									</p>
+								</div>
+								<div class="row">
+									<div class="span8">
+										<p>
+											<span class="label warning">How can I start?</span>
+											<strong>The basic unit of work in the Pomodoro Technique® can be split in five simple steps:</strong>
+										<ol>
+											<li>Choose a task to be accomplished</li>
+											<li>Set the Pomodoro to 25 minutes (the Pomodoro is the timer)</li>
+											<li>Work on the task until the Pomodoro rings, then put a check on your sheet of paper</li>
+											<li>Take a short break (5 minutes is OK)</li>
+											<li>Every 4 Pomodoros take a longer break</li>
+										</ol>
+										</p>
+									</div>
+									<div class="span4">
+										<img src="images/tomato_200_trans.png" alt="Tomato">
+									</div>
+								</div>
 							</div>
 						</div>
+
 					</div>
 
 					<div id="timeGroup" hidden="hidden">

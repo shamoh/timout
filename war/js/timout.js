@@ -67,6 +67,8 @@ $(document).ready(function(){
 		$('#wrong_browser').slideDown("slow");
 	}
 
+	initDB();
+
 
 	//
 	// FUNCTIONS
@@ -307,7 +309,19 @@ $(document).ready(function(){
 
 		localStorage[LAST_TASK_DESC] = currentTaskDesc;
 		localStorage[LAST_TASK_START_TIME] = (new Date()).getTime();
+
+		addPomodoroTask();
 	});
+
+	function addPomodoroTask() {
+		var taskDescription = document.getElementById("taskDescription");
+		console.log("addPomodoroTask: " + taskDescription);
+		timoutDB.webdb.addPomodoroTask(taskDescription.value, addPomodoroTaskCallback);
+	}
+
+	function addPomodoroTaskCallback(taskId) {
+		console.log("addPomodoroTaskCallback: " + taskId);
+	}
 
 	//
 	// TIME INTERRUPTION
