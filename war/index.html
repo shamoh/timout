@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 
 <html lang="en" manifest="timout.appcache">
-<!--<html lang="en" manifest="NO-timout.appcache">-->
 <head>
 	<meta charset="utf-8">
 	<title>Timout - Time Management</title>
@@ -27,10 +26,15 @@
 
 	<script type="text/javascript" src="js/timout.js"></script>
 
+	<script type="text/javascript">
+		var version = "v0.3/6-S1/5";
+	</script>
+
 	<!-- Google Analytics -->
 	<script type="text/javascript">
 		var _gaq = _gaq || [];
 		_gaq.push(['_setAccount', 'UA-3088225-2']);
+		_gaq.push([ '_setCustomVar', 1, 'Version', version ]);
 		_gaq.push(['_trackPageview']);
 
 		(function() {
@@ -225,7 +229,7 @@
 					<a target="_blank" href="https://chrome.google.com/webstore/detail/dekpabfaimofbinkbjlgdkkecodejmbf?hl=en">Chrome Web Store</a>
 					or use <strong>+1 button</strong> below. Thanks!
 					<!-- Place this tag where you want the +1 button to render -->
-					<div class="g-plusone" data-annotation="inline" data-size="medium" data-width="250"
+					<div class="g-plusone" data-annotation="inline" data-size="medium" data-width="240"
 						 data-href="https://chrome.google.com/webstore/detail/dekpabfaimofbinkbjlgdkkecodejmbf"></div>
 					<br />
 
@@ -253,11 +257,8 @@
 	</div>
 
 	<footer>
-		<p>&copy;2012 timout (at) kramolis.cz - v0.3/5/5</p>
+		<p>&copy;2012 timout (at) kramolis.cz - <span id="version"></span></p>
 	</footer>
-	<script type="text/javascript">
-		_gaq.push([ '_setCustomVar', 1, 'Version', 'v0.3/5/5' ]);
-	</script>
 
 </div>
 <!-- /container -->

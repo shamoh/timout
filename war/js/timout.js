@@ -40,6 +40,38 @@ $(document).ready(function(){
 	];
 
 	//
+	// INIT VALUES
+	//
+
+	console.log("version: " + version);
+	$('#version').html(version);
+
+	$('#taskDescription').html(localStorage[LAST_TASK_DESC]);
+	$('#taskDescription').val(localStorage[LAST_TASK_DESC]);
+	if ( localStorage[LAST_TASK_START_TIME] ) {
+		pomodoroStart = new Date();
+		pomodoroStart.setTime(localStorage[LAST_TASK_START_TIME]);
+		console.log("pomodoroStart: " + pomodoroStart);
+		$('#pomodoroStart').html(formatTimeDate(pomodoroStart));
+	}
+
+	// check for notifications support
+	if (window.webkitNotifications) {
+		console.log("Notifications are supported!");
+
+		permission = window.webkitNotifications.checkPermission();
+		console.log("Current permission: " + permission);
+
+		if ( permission == 2 ) {
+			$('#no_permission').slideDown("slow");
+		}
+	} else {
+		console.log("Notifications are not supported for this Browser/OS version yet.");
+		$('#wrong_browser').slideDown("slow");
+	}
+
+
+	//
 	// FUNCTIONS
 	//
 
@@ -248,34 +280,6 @@ $(document).ready(function(){
 		} else if ( permission == 2 ) {
 			$('#no_permission').slideDown("slow");
 		}
-	}
-
-	//
-	// INIT VALUES
-	//
-
-	$('#taskDescription').html(localStorage[LAST_TASK_DESC]);
-	$('#taskDescription').val(localStorage[LAST_TASK_DESC]);
-	if ( localStorage[LAST_TASK_START_TIME] ) {
-		pomodoroStart = new Date();
-		pomodoroStart.setTime(localStorage[LAST_TASK_START_TIME]);
-		console.log("pomodoroStart: " + pomodoroStart);
-		$('#pomodoroStart').html(formatTimeDate(pomodoroStart));
-	}
-
-	// check for notifications support
-	if (window.webkitNotifications) {
-		console.log("Notifications are supported!");
-
-		permission = window.webkitNotifications.checkPermission();
-		console.log("Current permission: " + permission);
-
-		if ( permission == 2 ) {
-			$('#no_permission').slideDown("slow");
-		}
-	} else {
-		console.log("Notifications are not supported for this Browser/OS version yet.");
-		$('#wrong_browser').slideDown("slow");
 	}
 
 	//
