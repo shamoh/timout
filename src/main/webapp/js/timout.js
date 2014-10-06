@@ -27,16 +27,17 @@ $(document).ready(function(){
 	];
 
 	var timers = [
-		{ name: "pomodoro", title: "Pomodoro", time: 1500 },
-		{ name: "long_break", title: "Long break", time: 900 },
-		{ name: "short_break", title: "Short break", time: 300 }
+//		{ name: "pomodoro", title: "Pomodoro", time: 1500 },
+//		{ name: "long_break", title: "Long break", time: 900 },
+//		{ name: "short_break", title: "Short break", time: 300 }
 
-//		{ name: "pomodoro", title: "Pomodoro Task", time: 25 },
+//		{ name: "pomodoro", title: "Pomodoro", time: 25 },
 //		{ name: "long_break", title: "Long break", time: 15 },
 //		{ name: "short_break", title: "Short break", time: 5 }
-//		{ name: "pomodoro", title: "Pomodoro Task", time: 5 },
-//		{ name: "long_break", title: "Long break", time: 3 },
-//		{ name: "short_break", title: "Short break", time: 1 }
+
+		{ name: "pomodoro", title: "Pomodoro", time: 5 },
+		{ name: "long_break", title: "Long break", time: 3 },
+		{ name: "short_break", title: "Short break", time: 1 }
 	];
 
 	//
@@ -167,19 +168,21 @@ $(document).ready(function(){
 		taskFinished();
 
 		var permission;
-		permission = window.webkitNotifications.checkPermission();
+		permission = Notification.permission;
 		console.log("Permission: " + permission);
-		if (permission == 0) {
+        if (permission == 'granted') {
 			displayNotification();
 		} else {
-			console.log("NO window.webkitNotifications permission!");
+			console.log("NO Notification permission!");
 		}
 	};
 
 	function displayNotification() {
 		var permission;
-		permission = window.webkitNotifications.checkPermission();
+		permission = Notification.permission;
 		console.log("Permission: " + permission);
+
+        //TODO play sound (once) + open notification
 
 		var popup_html ;
 		if ( timerName == 'pomodoro' ) {
@@ -188,12 +191,23 @@ $(document).ready(function(){
 			popup_html = "popup-break.html"
 		}
 
-		window.popup = popup = window.webkitNotifications.createHTMLNotification(popup_html);
-		popup.show();
+//        Notification notification = NotificationCenter.createHTMLNotification(popup_html);
+//        notification.show();
 
-		if ( POPUP_CANCEL_TIMEOUT != -1 ) {
-			setTimeout("popup.cancel()", POPUP_CANCEL_TIMEOUT);
-		}
+          var time = /(..)(:..)/.exec(new Date());     // The prettyprinted time.
+          var hour = time[1] % 12 || 12;               // The prettyprinted hour.
+          var period = time[1] < 12 ? 'a.m.' : 'p.m.'; // The period of the day.
+        new Notification(hour + time[2] + ' ' + period, {
+            icon: 'images/icon_128.png',
+            body: 'Time to make the toast.'
+          });
+
+		//window.popup = popup = window.webkitNotifications.createHTMLNotification(popup_html);
+		//popup.show();
+
+//		if ( POPUP_CANCEL_TIMEOUT != -1 ) {
+//			setTimeout("popup.cancel()", POPUP_CANCEL_TIMEOUT);
+//		}
 	}
 
 	function taskFinished() {
@@ -236,17 +250,17 @@ $(document).ready(function(){
 	});
 
 	function requestPermission() {
-		reqPerm = window.webkitNotifications.requestPermission(requestPermissionCallback)
+		reqPerm = Notification.requestPermission(requestPermissionCallback)
 		console.log("Request Permission: " + reqPerm);
 	}
 
 	function requestPermissionCallback() {
-		permission = window.webkitNotifications.checkPermission();
+		permission = Notification.permission;
 		console.log("requestPermissionCallback: " + permission);
-		if (permission == 1) {
+		if (permission !== 'granted') {
 			$('#missing_permission').modal('show');
-		} else if ( permission == 2 ) {
-			$('#no_permission').slideDown("slow");
+//		} else if ( permission == 2 ) {
+//			$('#no_permission').slideDown("slow");
 		}
 	}
 
@@ -264,13 +278,13 @@ $(document).ready(function(){
 	}
 
 	// check for notifications support
-	if (window.webkitNotifications) {
+	if (window.Notification) {
 		console.log("Notifications are supported!");
 
-		permission = window.webkitNotifications.checkPermission();
+		permission = Notification.permission;
 		console.log("Current permission: " + permission);
 
-		if ( permission == 2 ) {
+        if (permission !== 'granted') {
 			$('#no_permission').slideDown("slow");
 		}
 	} else {
@@ -286,9 +300,9 @@ $(document).ready(function(){
 		event.preventDefault();
 		console.log("Clicked #taskStart");
 
-		if (window.webkitNotifications) {
-			permission = window.webkitNotifications.checkPermission();
-			if (permission == 1) {
+		if (window.Notification) {
+			permission = Notification.permission;
+            if (permission !== 'granted') {
 				requestPermission();
 			}
 		}
