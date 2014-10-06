@@ -1,7 +1,7 @@
 {
 	"name": "Timout - Time Management",
 	"description": "Your agile time management application - The Pomodoro Technique",
-	"version": "0.3",
+	"version": "0.4",
 	"app": {
 		"urls": [
 			"http://timout.kramolis.cz/"
@@ -14,8 +14,9 @@
 		"128": "icon_128.png"
 	},
 	"permissions": [
-		"notifications",
+		"notification",
 		"background"
 	],
-	"offline_enabled": true
+	"offline_enabled": true,
+	"manifest_version": 2
 }

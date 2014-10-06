@@ -1,0 +1,11 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" version="2.5">
+	<mime-mapping>
+		<extension>appcache</extension>
+		<mime-type>text/cache-manifest</mime-type>
+	</mime-mapping>
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<!--<welcome-file>index.gtpl</welcome-file>-->
+	</welcome-file-list>
+</web-app>

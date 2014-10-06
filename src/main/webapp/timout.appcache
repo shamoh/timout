@@ -1,6 +1,6 @@
 CACHE MANIFEST
 
-# Version 5
+# Version 6
 
 CACHE:
 #HTML
@@ -38,3 +38,6 @@ http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png
 # everything else is served from internet
 NETWORK:
 *
+
+SETTINGS:
+prefer-online
